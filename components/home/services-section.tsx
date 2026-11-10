@@ -4,7 +4,6 @@ import { Container } from "../ui/container";
 import { Eyebrow } from "../ui/eyebrow";
 import { useSectionReveal } from "./use-section-reveal";
 import { ServiceCard } from "@/components/services/service-card";
-import type { ServiceItem as CardServiceItem } from "@/data/services";
 
 interface ApiServiceItem {
   id: number;
@@ -66,32 +65,27 @@ export function ServicesSection({ services }: ServicesSectionProps) {
 
         {/* Services Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {services.map((service, index) => {
-            const cardService: CardServiceItem = {
-              id: service.id,
-              title: service.title,
-              slug: service.title
-                .toLowerCase()
-                .replace(/&/g, "")
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-|-$/g, ""),
-              description:
-                service.description_text ||
-                service.subtitle ||
-                service.tagline ||
-                "",
-              image: service.image || "/images/service-placeholder.jpg",
-            };
-
-            return (
-              <ServiceCard
-                key={service.id}
-                service={cardService}
-                index={index}
-                isVisible={isVisible}
-              />
-            );
-          })}
+          {services.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              service={{
+                title: service.title,
+                slug: service.title
+                  .toLowerCase()
+                  .replace(/&/g, "")
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/^-|-$/g, ""),
+                description:
+                  service.description_text ||
+                  service.subtitle ||
+                  service.tagline ||
+                  "",
+                image: service.image || "/images/service-placeholder.jpg",
+              }}
+              index={index}
+              isVisible={isVisible}
+            />
+          ))}
 
           {/* Empty State */}
           {services.length === 0 && (

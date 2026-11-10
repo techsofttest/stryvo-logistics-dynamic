@@ -2,10 +2,16 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { ServiceItem } from "@/data/services";
+
+interface ServiceCardItem {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+}
 
 interface ServiceCardProps {
-  service: ServiceItem;
+  service: ServiceCardItem;
   index?: number;
   isVisible?: boolean;
 }
@@ -35,20 +41,21 @@ export function ServiceCard({
         />
       </div>
 
-      {/* Gradient overlay: dark on top for title readability, and deep dark at bottom on hover */}
+      {/* Gradient overlay */}
       <div className="absolute -z-1 inset-0 bg-gradient-to-b from-black/75 via-black/20 to-transparent transition-opacity duration-300 group-hover:from-black/85 group-hover:via-black/40 group-hover:to-black/45" />
 
-      {/* Top Row: Title on Left, Arrow Icon on Right */}
+      {/* Top Row */}
       <div className="relative z-10 flex items-start justify-between gap-3">
         <h3 className="m-0 text-base sm:text-lg font-semibold tracking-tight leading-snug drop-shadow-sm text-white transition-colors duration-200 group-hover:text-white">
           {service.title}
         </h3>
+
         <div className="w-7 h-7 rounded-md bg-[#ed292f] text-white grid place-items-center shrink-0 shadow-md transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-[#ed292f]">
           <ArrowUpRight size={15} strokeWidth={2.4} />
         </div>
       </div>
 
-      {/* Bottom: Description pushes up from the bottom on hover */}
+      {/* Bottom Description */}
       <div className="relative z-10 w-full overflow-hidden">
         <div className="translate-y-full opacity-0 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0 group-hover:opacity-100">
           <div className="p-3.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 shadow-lg">
