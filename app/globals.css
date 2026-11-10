@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-charcoal: #17191a;
+  --color-charcoal-2: #222526;
+  --color-paper: #f3f2ee;
+  --color-red: #ed292f;
+  --color-muted: #686b6c;
+  --color-line: rgba(23, 25, 26, 0.18);
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), sans-serif;
+}
+
+:root {
+  --charcoal: #17191a;
+  --charcoal-2: #222526;
+  --paper: #f3f2ee;
+  --white: #ffffff;
+  --red: #ed292f;
+  --muted: #686b6c;
+  --line: rgba(23, 25, 26, 0.18);
+  --shell: 1440px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--charcoal);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background: var(--red);
+  color: white;
+}
+
+/* ========================================================
+   Distinct, High-Impact SEO-Safe Scroll Reveal System
+   - Initial state: clear translateY(44px) + scale(0.97) + opacity 0
+   - Visible state: slides smoothly into place with cubic bezier easing
+   ======================================================== */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(44px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Fallback for no-js or bots */
+@media (scripting: none) {
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
