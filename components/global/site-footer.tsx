@@ -191,9 +191,18 @@ export function SiteFooter() {
               {contactData?.data?.phone1 && (
                 <a
                   href={`tel:${contactData.data.phone1.replace(/[^\d+]/g, "")}`}
-                  className="text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f]"
+                  className="block text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f]"
                 >
                   {contactData.data.phone1}
+                </a>
+              )}
+
+              {contactData?.data?.phone2 && (
+                <a
+                  href={`tel:${contactData.data.phone2.replace(/[^\d+]/g, "")}`}
+                  className="block text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f] mt-2"
+                >
+                  {contactData.data.phone2}
                 </a>
               )}
             </div>
@@ -206,9 +215,27 @@ export function SiteFooter() {
               {contactData?.data?.email1 && (
                 <a
                   href={`mailto:${contactData.data.email1}`}
-                  className="text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f]"
+                  className="block text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f]"
                 >
                   {contactData.data.email1}
+                </a>
+              )}
+
+              {contactData?.data?.email2 && (
+                <a
+                  href={`mailto:${contactData.data.email2}`}
+                  className="block text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f] mt-2"
+                >
+                  {contactData.data.email2}
+                </a>
+              )}
+
+              {contactData?.data?.email3 && (
+                <a
+                  href={`mailto:${contactData.data.email3}`}
+                  className="block text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f] mt-2"
+                >
+                  {contactData.data.email3}
                 </a>
               )}
             </div>
