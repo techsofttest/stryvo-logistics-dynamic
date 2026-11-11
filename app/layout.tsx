@@ -4,10 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SiteHeader } from "@/components/global/site-header";
 import { SiteFooter } from "@/components/global/site-footer";
-
-// --------------------------------------------------
-// Local Fonts
-// --------------------------------------------------
+import { WhatsAppIsland } from "@/components/ui/whatsapp-island";
+import { getContact } from "@/lib/contact";
 
 const plusJakartaSans = localFont({
   src: "../public/fonts/plus-jakarta-sans.ttf",
@@ -23,10 +21,6 @@ const syne = localFont({
   weight: "600 800",
 });
 
-// --------------------------------------------------
-// SEO Metadata
-// --------------------------------------------------
-
 export const metadata: Metadata = {
   title: "Stryvo Logistics LLC | Moving Business Without Borders",
   description:
@@ -41,21 +35,22 @@ export const metadata: Metadata = {
   },
 };
 
-// --------------------------------------------------
-// Root Layout
-// --------------------------------------------------
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const contactData = await getContact();
+  const contact = contactData?.data ?? null;
+
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${syne.variable}`}>
       <body className="font-sans antialiased">
         <SiteHeader />
         {children}
         <SiteFooter />
+
+        <WhatsAppIsland whatsapp={contact?.phone2 ?? ""} />
       </body>
     </html>
   );
