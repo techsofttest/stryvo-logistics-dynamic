@@ -224,15 +224,14 @@ export function SiteFooter() {
         >
           <span>&copy; 2026 Stryvo Logistics LLC. All Rights Reserved.</span>
 
-          <div className="flex items-center gap-6">
-            <a href="#contact" className="transition-colors hover:text-white">
-              Privacy Policy
-            </a>
-
-            <a href="#contact" className="transition-colors hover:text-white">
-              Terms Of Use
-            </a>
-          </div>
+          <a
+            href="https://www.techsoftweb.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-normal transition-colors hover:text-white hover:underline underline-offset-4"
+          >
+            Web Design Company in Kochi Techsoft
+          </a>
         </div>
       </Container>
 
