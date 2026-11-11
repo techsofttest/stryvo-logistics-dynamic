@@ -90,35 +90,6 @@ export function HeroSection({ banner }: HeroSectionProps) {
             DUBAI · CONNECTING THE GCC
           </Eyebrow>
         </div>
-
-        {/* Bottom Right: Description inside compact white box with filled button */}
-        <div
-          className={`self-start sm:self-end max-w-sm bg-white/95 text-[#17191a] backdrop-blur-md rounded-xl p-3.5 sm:p-4 shadow-xl border border-white/60 reveal-item ${
-            isVisible ? "is-visible" : ""
-          }`}
-          style={{ transitionDelay: "280ms" }}
-        >
-          <div className="flex items-end justify-between gap-3 mb-2.5">
-            <div>
-              <span className="block text-xl font-bold text-[#ed292f] mb-1">
-                Stryvo Logistics LLC
-              </span>
-
-              <p className="m-0 text-xs sm:text-[13px] leading-snug font-medium text-[#17191a]">
-                Integrated GCC overland transport, freight forwarding, customs
-                brokerage & bonded logistics.
-              </p>
-            </div>
-
-            <a
-              href="#about"
-              aria-label="Scroll to about section"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#ed292f] text-white grid place-items-center shrink-0 shadow-md transition-all duration-200 hover:bg-[#17191a] hover:scale-105 cursor-pointer"
-            >
-              <ArrowDownRight size={18} strokeWidth={2.4} />
-            </a>
-          </div>
-        </div>
       </Container>
     </section>
   );

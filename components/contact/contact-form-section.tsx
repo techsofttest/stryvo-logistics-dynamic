@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { ArrowUpRight, Check, MapPin, Clock, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Check, MapPin, Clock } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
 import { useSectionReveal } from "@/components/home/use-section-reveal";
@@ -18,6 +18,8 @@ export function ContactFormSection({ services }: ContactFormSectionProps) {
   const { sectionRef, isVisible } = useSectionReveal({ threshold: 0.1 });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,9 +33,62 @@ export function ContactFormSection({ services }: ContactFormSectionProps) {
     message: "",
   });
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/contact-form`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.company,
+            service: formData.service,
+            origin: formData.origin,
+            destination: formData.destination,
+            message: formData.message,
+          }),
+        },
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Something went wrong.");
+      }
+
+      setSubmitted(true);
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        origin: "",
+        destination: "",
+        cargoDetails: "",
+        message: "",
+      });
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Unable to submit your enquiry. Please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -102,7 +157,7 @@ export function ContactFormSection({ services }: ContactFormSectionProps) {
           </div>
         </div>
 
-        {/* Right Column: Full Interactive Contact / Quote Form */}
+        {/* Right Column: Contact / Quote Form */}
         <div className="lg:col-span-7 bg-[#f3f2ee] rounded-2xl p-6 sm:p-8 md:p-10 border border-black/10">
           {submitted ? (
             <div className="py-14 flex flex-col items-center text-center">
@@ -126,7 +181,10 @@ export function ContactFormSection({ services }: ContactFormSectionProps) {
 
               <button
                 type="button"
-                onClick={() => setSubmitted(false)}
+                onClick={() => {
+                  setSubmitted(false);
+                  setErrorMessage("");
+                }}
                 className="px-6 py-2.5 bg-[#17191a] text-white text-xs font-bold rounded-lg hover:bg-[#ed292f] transition-colors cursor-pointer"
               >
                 Submit another request
@@ -272,7 +330,7 @@ export function ContactFormSection({ services }: ContactFormSectionProps) {
                 </select>
               </div>
 
-              {/* Row 4: Route details (Origin & Destination) */}
+              {/* Row 4: Route Details */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="relative border-b border-[#8a8e8f] focus-within:border-[#ed292f] transition-colors">
                   <input
@@ -340,17 +398,32 @@ export function ContactFormSection({ services }: ContactFormSectionProps) {
                 </label>
               </div>
 
+              {/* API Error Message */}
+              {errorMessage && (
+                <div
+                  role="alert"
+                  className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-700"
+                >
+                  {errorMessage}
+                </div>
+              )}
+
               {/* Submit CTA */}
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="group w-full sm:w-auto inline-flex items-center justify-between font-bold rounded-lg transition-all duration-200 cursor-pointer bg-[#ed292f] text-white hover:bg-[#17191a] text-sm pl-5 pr-2 py-2.5 gap-4"
+                  disabled={loading}
+                  className="group w-full sm:w-auto inline-flex items-center justify-between font-bold rounded-lg transition-all duration-200 cursor-pointer bg-[#ed292f] text-white hover:bg-[#17191a] text-sm pl-5 pr-2 py-2.5 gap-4 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <span>Submit Rate Request</span>
-
-                  <span className="w-8 h-8 rounded-md bg-white text-[#ed292f] grid place-items-center shrink-0 transition-transform duration-200 group-hover:scale-105">
-                    <ArrowUpRight size={16} strokeWidth={2.4} />
+                  <span>
+                    {loading ? "Submitting..." : "Submit Rate Request"}
                   </span>
+
+                  {!loading && (
+                    <span className="w-8 h-8 rounded-md bg-white text-[#ed292f] grid place-items-center shrink-0 transition-transform duration-200 group-hover:scale-105">
+                      <ArrowUpRight size={16} strokeWidth={2.4} />
+                    </span>
+                  )}
                 </button>
               </div>
             </form>
