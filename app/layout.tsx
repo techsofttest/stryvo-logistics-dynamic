@@ -1,22 +1,31 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Syne } from "next/font/google";
+import localFont from "next/font/local";
+
 import "./globals.css";
 import { SiteHeader } from "@/components/global/site-header";
 import { SiteFooter } from "@/components/global/site-footer";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+// --------------------------------------------------
+// Local Fonts
+// --------------------------------------------------
+
+const plusJakartaSans = localFont({
+  src: "../public/fonts/plus-jakarta-sans.ttf",
   variable: "--font-sans",
   display: "swap",
+  weight: "400 800",
 });
 
-const syne = Syne({
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
+const syne = localFont({
+  src: "../public/fonts/syne.ttf",
   variable: "--font-display",
   display: "swap",
+  weight: "600 800",
 });
+
+// --------------------------------------------------
+// SEO Metadata
+// --------------------------------------------------
 
 export const metadata: Metadata = {
   title: "Stryvo Logistics LLC | Moving Business Without Borders",
@@ -31,6 +40,10 @@ export const metadata: Metadata = {
     locale: "en_AE",
   },
 };
+
+// --------------------------------------------------
+// Root Layout
+// --------------------------------------------------
 
 export default function RootLayout({
   children,
