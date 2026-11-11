@@ -157,7 +157,7 @@ export function ContactDetailsSection({ data }: ContactDetailsSectionProps) {
             }`}
             style={{ transitionDelay: "220ms" }}
           >
-            Reach our Dubai headquarters, 24/7 overland dispatch desks, or
+            Reach out our Dubai office, 24/7 overland dispatch desks, or
             commercial support teams.
           </p>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, Clock, Award, Users } from "lucide-react";
+import { ShieldCheck, Clock, Award, Users, Leaf } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { useSectionReveal } from "@/components/home/use-section-reveal";
@@ -26,13 +26,21 @@ const values = [
     title: "Client-First Dispatch & Custom Solutions",
     desc: "Dedicated operations coordinators, 2-hour quote turnaround, and proactive multi-stage shipment advisories.",
   },
+  {
+    icon: Leaf,
+    title: "Sustainability",
+    desc: "Committed to sustainable logistics through responsible resource management, efficient transportation, reduced environmental impact, and a greener future for generations to come.",
+  },
 ];
 
 export function AboutValuesSection() {
   const { sectionRef, isVisible } = useSectionReveal({ threshold: 0.15 });
 
   return (
-    <section ref={sectionRef} className="bg-white py-18 sm:py-24 lg:py-28 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="bg-white py-18 sm:py-24 lg:py-28 overflow-hidden"
+    >
       <Container>
         <div className="max-w-2xl mb-12 sm:mb-16">
           <div
@@ -53,7 +61,7 @@ export function AboutValuesSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {values.map((val, idx) => {
             const Icon = val.icon;
             return (
