@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "demo.janamithrasociety.com/stryvo-logistics-admin/public/",
+        hostname: "admin.stryvologistics.com",
         port: "",
         pathname: "/uploads/**",
       },
