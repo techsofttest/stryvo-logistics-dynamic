@@ -23,7 +23,6 @@ export interface OperatingHoursTransit {
 export interface ContactDetails {
   address?: ContactAddress[];
   phone1?: string;
-  phone2?: string;
   email1?: string;
   email2?: string;
   email3?: string;

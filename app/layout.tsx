@@ -56,7 +56,7 @@ export default async function RootLayout({
         {children}
         <SiteFooter />
 
-        <WhatsAppIsland whatsapp={contact?.phone2 ?? ""} />
+        <WhatsAppIsland whatsapp={contact?.phone1 ?? ""} />
       </body>
     </html>
   );
