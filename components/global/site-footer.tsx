@@ -196,15 +196,6 @@ export function SiteFooter() {
                   {contactData.data.phone1}
                 </a>
               )}
-
-              {contactData?.data?.phone2 && (
-                <a
-                  href={`tel:${contactData.data.phone2.replace(/[^\d+]/g, "")}`}
-                  className="block text-xs sm:text-sm text-white/60 transition-colors hover:text-[#ed292f] mt-2"
-                >
-                  {contactData.data.phone2}
-                </a>
-              )}
             </div>
 
             <div>

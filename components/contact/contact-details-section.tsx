@@ -55,19 +55,9 @@ export function ContactDetailsSection({ data }: ContactDetailsSectionProps) {
         ...(data?.phone1
           ? [
               {
-                label: "Freight Operations",
+                label: "Freight Operations / Customer Support",
                 value: data.phone1,
                 href: `tel:${data.phone1.replace(/[^\d+]/g, "")}`,
-              },
-            ]
-          : []),
-
-        ...(data?.phone2
-          ? [
-              {
-                label: "Customer Support",
-                value: data.phone2,
-                href: `tel:${data.phone2.replace(/[^\d+]/g, "")}`,
               },
             ]
           : []),
