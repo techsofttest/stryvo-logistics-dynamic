@@ -85,10 +85,11 @@ export function AboutMissionSection() {
             }`}
             style={{ transitionDelay: "360ms" }}
           >
-            By deploying modern fleet units, real-time tracking checkpoints, and
-            licensed customs clearance brokers stationed at every critical land
-            border and maritime port in the GCC, we empower enterprises to scale
-            their supply chains with confidence.
+            This collaborative model allows us to remain highly agile, scaling
+            our capabilities to meet your exact demands. By combining top-tier
+            specialist handlers with Stryvo’s rigorous oversight, we deliver a
+            reliable, optimized supply chain that protects your bottom line and
+            accelerates your growth.
           </p>
         </div>
       </Container>
