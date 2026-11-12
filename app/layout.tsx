@@ -23,6 +23,12 @@ const syne = localFont({
 
 export const metadata: Metadata = {
   title: "Stryvo Logistics LLC | Moving Business Without Borders",
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
+
   description:
     "Dubai-based logistics and transportation solutions across the UAE, Oman, Saudi Arabia and global trade lanes. Connect with Stryvo Logistics LLC for road, air, sea and supply-chain services.",
   applicationName: "Stryvo Logistics LLC",
